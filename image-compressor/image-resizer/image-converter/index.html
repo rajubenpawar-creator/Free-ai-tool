@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Converter Online – JPG PNG WebP Converter</title>
+<meta name="description" content="Convert images online free. Convert JPG to PNG, PNG to JPG and WebP images instantly.">
+<meta name="keywords" content="image converter online,jpg to png,png to jpg,webp to jpg,convert image free">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+<h1>Image Converter Online</h1>
+
+<input type="file" id="img">
+<select id="type">
+<option value="image/png">PNG</option>
+<option value="image/jpeg">JPG</option>
+</select>
+<button onclick="convert()">Convert Image</button>
+<br><a id="d"></a>
+
+<h2>Convert Image Formats Online</h2>
+<p>
+Free image converter to change JPG, PNG and WebP formats.
+Fast and secure image conversion tool.
+</p>
+
+<script>
+function convert(){
+ const i=new Image();
+ i.src=URL.createObjectURL(img.files[0]);
+ i.onload=()=>{
+  const c=document.createElement("canvas");
+  c.width=i.width;c.height=i.height;
+  c.getContext("2d").drawImage(i,0,0);
+  c.toBlob(b=>{
+   d.href=URL.createObjectURL(b);
+   d.download="converted";
+   d.innerText="Download Converted Image";
+  },type.value);
+ }
+}
+</script>
+</body>
+</html>
